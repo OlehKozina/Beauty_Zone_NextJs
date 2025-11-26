@@ -1,109 +1,102 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getProcedures } from "@/sanity/sanity-utils";
-import Image from "next/image";
-import { Play } from "next/font/google";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import useEmblaCarousel from "embla-carousel-react";
+import Heading from "../Heading";
+import ArrowButton from "./ArrowButton";
+import clsx from "clsx";
+import { PortableTextBlock } from "next-sanity";
+import Slide from "./Slide";
 
-const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
-
-interface Procedure {
+interface SliderProps {
   _id: string;
-  name: string;
-  image: string;
+  slides: {
+    image: string;
+    content: PortableTextBlock[];
+    name: string;
+    _key?: string;
+  }[];
+  heading?: string;
 }
 
-export default function Slider() {
-  const [procedures, setProcedures] = useState<Procedure[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [slidesPerPage, setSlidesPerPage] = useState(1);
+export default function Slider({ heading, slides, _id }: SliderProps) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    slidesToScroll: 1,
+    skipSnaps: false,
+    align: "start",
+    loop: true,
+  });
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const proceduresData = await getProcedures();
-      setProcedures(proceduresData);
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
     };
-    fetchData();
-  }, []);
+
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on("select", onSelect);
+    onSelect();
+  }, [emblaApi]);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setSlidesPerPage(3);
-      else if (window.innerWidth >= 640) setSlidesPerPage(2);
-      else setSlidesPerPage(1);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + slidesPerPage >= procedures.length
-        ? 0
-        : prevIndex + slidesPerPage
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0
-        ? procedures.length - slidesPerPage
-        : prevIndex - slidesPerPage
-    );
-  };
-
-  const slideWidth = 100 / slidesPerPage; // Percentage width for each slide
+    if (!emblaApi) return;
+    emblaApi.on("pointerDown", () => setIsDragging(true));
+    emblaApi.on("pointerUp", () => setIsDragging(false));
+    emblaApi.on("select", () => setIsDragging(false));
+  }, [emblaApi]);
 
   return (
     <section
-      className="relative z-10 sm:w-[540px] md:w-[780px] lg:w-[1100px] mx-auto"
-      id="Our_services"
+      className="py-5 md:py-12 relative overflow-hidden max-md:scroll-mt-16 scroll-mt-10 px-6"
+      id="customers"
     >
-      <div className="container overflow-hidden relative ">
-        <h2
-          className={`services-section__title section-titles text-center mb-5 ${play.className}`}
-        >
-          Our <span className="text-secondary-light">procedures</span>
-        </h2>
-        <div
-          className="flex transition-transform duration-300 sm:w-[540px] md:w-[780px] lg:w-[1100px] relative "
-          style={{
-            transform: `translateX(-${currentIndex * slideWidth}%)`,
-            gap: "5px", // Adjust this to control the space between slides
-          }}
-        >
-          {procedures.map((procedure) => (
-            <div
-              key={procedure._id}
-              className="flex-shrink-0 "
-              style={{ flexBasis: `${slideWidth}%` }}
-            >
-              <Image
-                width={345}
-                height={457}
-                src={procedure.image}
-                alt={procedure.name}
-                className="cursor-pointer pb-[15px]"
-                style={{ objectFit: "cover" }} // Ensure image fits properly
-              />
+      <div className="container mx-auto px-4 bg-brand-dark bg-opacity-80 rounded-3xl py-10">
+        <Heading heading={heading} className="mb-6 text-center md:mb-10" />
+        <div className="relative max-w-[21rem] sm:max-w-[42rem] md:max-w-[69rem] mx-auto">
+          <div
+            className={clsx(
+              "overflow-hidden",
+              isDragging ? "cursor-grabbing" : "cursor-grab"
+            )}
+            ref={emblaRef}
+          >
+            <div className="flex">
+              {slides.map((slide) => {
+                const { content, image, name } = slide;
+                return (
+                  <div
+                    key={name}
+                    className="flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_33.3333%] px-2"
+                  >
+                    <Slide {...{ content, image, name }} />
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          </div>
+          <ArrowButton direction="left" onClick={scrollPrev} />
+          <ArrowButton direction="right" onClick={scrollNext} />
+          <div className="flex mx-auto w-fit justify-center gap-2 mt-3 p-4 rounded-full bg-brand-dark">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 hover:scale-125 transition-all rounded-full ${
+                  index === selectedIndex
+                    ? "bg-brand-default"
+                    : "bg-brand-light"
+                }`}
+                onClick={() => emblaApi?.scrollTo(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
-        <button
-          onClick={prevSlide}
-          className="absolute bg-white shadow rounded-full h-14 w-14 top-1/2 left-0 transform -translate-y-1/2 text-black p-2 z-5"
-        >
-          <FontAwesomeIcon icon={faAngleLeft} className="text-[24px]" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute bg-white shadow rounded-full h-14 w-14 top-1/2 right-0 transform -translate-y-1/2 text-black p-2 z-5"
-        >
-          <FontAwesomeIcon icon={faAngleRight} className="text-[24px]" />
-        </button>
       </div>
     </section>
   );

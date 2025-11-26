@@ -33,34 +33,6 @@ export function getPageHome() {
   );
 }
 
-export async function getProcedures() {
-  return fetchNoCache(
-    `*[_type =='procedure']{
-    _id,
-    _createdAt,
-    name,
-    'slug': slug.current,
-    'image': image.asset->url,
-    url, 
-    content
-    }`
-  );
-}
-
-export async function getWhys() {
-  return fetchNoCache(
-    `*[_type =='why']{
-    _id,
-    _createdAt,
-    name,
-    'slug': slug.current,
-    'image': image.asset->url,
-    url, 
-    content
-    }`
-  );
-}
-
 export function getHeader() {
   return fetchNoCache(`*[_type == "header"][0]{
     "form": *[_type == "form"][0]${formQuery},
