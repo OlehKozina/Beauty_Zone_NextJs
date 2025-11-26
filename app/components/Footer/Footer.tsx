@@ -5,10 +5,11 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Play } from "next/font/google";
 import Image from "next/image";
+import { NavigationType } from "@/types/Navigation";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-const Footer = () => {
+function Footer({ footer }: { footer?: NavigationType }) {
   return (
     <footer className="bg-secondary-dark relative">
       <div className="container min-h-[200px]">
@@ -149,6 +150,6 @@ const Footer = () => {
       />
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -2,10 +2,11 @@
 import { useState } from "react";
 import Form from "../Form/Form";
 import { Play } from "next/font/google";
+import { HeroType } from "@/types/Hero";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-const Hero = () => {
+const Hero = ({ hero }: { hero: HeroType }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const openForm = () => setIsFormVisible(true);
   const closeForm = () => setIsFormVisible(false);

@@ -1,22 +1,15 @@
-import Header from "./components/Header";
 import Hero from "./components/Hero";
-import MediaWithText from "./components/MediaWithText";
-import Cards from "./components/Cards";
-import Slider from "./components/Slider";
-import Contacts from "./components/Contacts";
-import Footer from "./components/Footer";
 import dynamic from "next/dynamic";
+import { getPageHome } from "@/sanity/sanity-utils";
 
 export default async function Home() {
+  const [pageHome] = await Promise.all([getPageHome()]);
+  const { hero, components } = pageHome[0] || {};
+  const ComponentsList = dynamic(() => import("./components/ComponentsList"));
   return (
     <>
-      <Header />
-      <Hero />
-      <MediaWithText />
-      <Cards />
-      <Slider />
-      <Contacts />
-      <Footer />
+      {hero && <Hero hero={hero} />}
+      {components && <ComponentsList components={components} />}
     </>
   );
 }

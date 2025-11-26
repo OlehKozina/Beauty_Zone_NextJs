@@ -7,10 +7,11 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Play } from "next/font/google";
+import { NavigationType } from "@/types/Navigation";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-const Header = () => {
+const Header = ({ header }: { header: NavigationType }) => {
   const [isMobMenuVisible, setIsMobMenuVisible] = useState(false);
   const openMenu = () => setIsMobMenuVisible(true);
   const closeMenu = () => setIsMobMenuVisible(false);

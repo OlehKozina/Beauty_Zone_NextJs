@@ -1,4 +1,10 @@
-import procedure from "./procedure-schema";
-import why from "./why-schema";
-const schemas = [procedure, why];
+import * as componentsSchema from "./components";
+import * as documentsSchema from "./documents";
+import * as objectSchema from "./objects";
+
+const schemas = [
+  ...Object.values(componentsSchema),
+  ...Object.values(documentsSchema),
+  ...Object.values(objectSchema),
+];
 export default schemas;

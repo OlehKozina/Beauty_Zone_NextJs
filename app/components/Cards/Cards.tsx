@@ -14,7 +14,6 @@ export default async function Cards() {
       style={{ background: "rgb(255, 255, 255)" }}
       id="Why_us"
     >
-      {/* Main Content */}
       <div className="container">
         <h2
           className={`section-titles text-center max-w-[450px] mt-0 relative z-10 ${play.className}`}
