@@ -14,6 +14,10 @@ export const header = {
       of: [{ type: "link" }],
       title: "Navigation Links",
     }),
+    F.array({
+      name: "socialLinks",
+      of: [{ type: "string" }],
+    }),
     F.reference({
       name: "privacyPolicy",
       to: [{ type: "privacyPolicy" }],

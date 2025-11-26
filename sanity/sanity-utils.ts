@@ -24,6 +24,8 @@ export function getPageHome() {
     `*[_type == "pageHome"]{
     hero[0]{
       heading,
+      label,
+      content,
       "videoUrl": video.asset->url,
       "privacyPolicy": *[_type == "privacyPolicy"][0].content,
       "form": *[_type == "form"][0]${formQuery},
@@ -36,22 +38,20 @@ export function getPageHome() {
 export function getHeader() {
   return fetchNoCache(`*[_type == "header"][0]{
     "form": *[_type == "form"][0]${formQuery},
-    navigation[]{ title, "slug": slug.current }
+    navigation[]{ title, "slug": slug.current },
+    socialLinks,
   }`);
 }
 
 export function getFooter() {
   return fetchNoCache(
     `*[_type == "footer"][0]{
-    navigation[]{ title, sectionId },
+    navigation[]{ title, "slug": slug.current },
     phone,
     email,
     address,
     socialLinks,
-    footerImages{
-    "left": leftImage.asset->url,
-    "right": rightImage.asset->url
-    },
+    "image": image.asset->url,
       "privacyPolicy": *[_type == "privacyPolicy"][0].content,
   }`
   );

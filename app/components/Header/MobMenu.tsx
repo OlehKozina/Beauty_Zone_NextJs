@@ -1,18 +1,28 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import Image from "next/image";
 
 interface MobMenuProps {
   onClose: () => void;
+  socialLinks?: {
+    label?: string;
+    href?: string;
+    icon?: any;
+  }[];
+  navigation?: {
+    title?: string;
+    slug?: string;
+  }[];
 }
 
-const MobMenu: React.FC<MobMenuProps> = ({ onClose }) => {
+const MobMenu: React.FC<MobMenuProps> = ({
+  onClose,
+  socialLinks,
+  navigation,
+}) => {
   return (
     <>
-      {" "}
       <div className="fixed top-0 left-0 w-full h-full bg-white z-40">
         <FontAwesomeIcon
           icon={faXmark}
@@ -21,76 +31,42 @@ const MobMenu: React.FC<MobMenuProps> = ({ onClose }) => {
         />
         <ul className="flex flex-col gap-5 m-5">
           <li>
-            <p className="my-5 text-secondary-light">
-              Beauty <br />
-              zone
-            </p>
-          </li>
-          <li>
-            <a
-              className="hover:text-secondary-light menu-btn-close"
-              href="#About_us"
-              onClick={onClose}
-            >
-              About us
+            <a className="no-underline text-primary-dark" href="#">
+              <Image
+                className="mt-2"
+                src="/logo.png"
+                alt="logo"
+                width={100}
+                height={50}
+              />
             </a>
           </li>
-          <li>
-            <a
-              className="hover:text-secondary-light menu-btn-close"
-              href="#Why_us"
-              onClick={onClose}
-            >
-              Why us
-            </a>
-          </li>
-          <li>
-            <a
-              className="hover:text-secondary-light menu-btn-close"
-              href="#Our_services"
-              onClick={onClose}
-            >
-              Our procedures
-            </a>
-          </li>
-          <li>
-            <a
-              className="hover:text-secondary-light menu-btn-close"
-              href="#Contacts"
-              onClick={onClose}
-            >
-              Contacts
-            </a>
-          </li>
+          {!!navigation?.length &&
+            navigation.map((link) => (
+              <li
+                key={link.title}
+                className="menu-btn-close hover:text-secondary-light"
+              >
+                <a href={`#${link.slug}`}>{link.title}</a>
+              </li>
+            ))}
+          <div className="flex gap-4">
+            {" "}
+            {!!socialLinks?.length &&
+              socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  aria-label={link.label}
+                  className="hover:text-secondary-light w-6 h-6"
+                >
+                  {link.icon && (
+                    <FontAwesomeIcon icon={link.icon} className="text-2xl" />
+                  )}
+                </a>
+              ))}
+          </div>
         </ul>
-        <address>
-          <ul className="ml-5 flex gap-5">
-            <li>
-              <a href="tel:+18253337707">
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className="text-[#011c44] w-6 h-6 hover:text-secondary-light"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/okayne__/" target="_blank">
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className="text-[#011c44] w-6 h-6 hover:text-secondary-light"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.facebook.com/olliekayne" target="_blank">
-                <FontAwesomeIcon
-                  icon={faFacebook}
-                  className="text-[#011c44] w-6 h-6 hover:text-secondary-light"
-                />
-              </a>
-            </li>
-          </ul>
-        </address>
       </div>
     </>
   );

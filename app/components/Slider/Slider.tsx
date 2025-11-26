@@ -82,20 +82,6 @@ export default function Slider({ heading, slides, id }: SliderProps) {
           </div>
           <ArrowButton direction="left" onClick={scrollPrev} />
           <ArrowButton direction="right" onClick={scrollNext} />
-          <div className="flex mx-auto w-fit justify-center gap-2 mt-3 p-4 rounded-full bg-brand-dark">
-            {scrollSnaps.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 hover:scale-125 transition-all rounded-full ${
-                  index === selectedIndex
-                    ? "bg-brand-default"
-                    : "bg-brand-light"
-                }`}
-                onClick={() => emblaApi?.scrollTo(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

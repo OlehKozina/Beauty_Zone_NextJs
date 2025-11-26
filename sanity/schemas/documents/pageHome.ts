@@ -1,5 +1,6 @@
 import { AiOutlineHome as icon } from "react-icons/ai";
 import { F, G } from "../tool";
+import ArrayMaxItems from "../ArrayMaxItems";
 
 export const pageHome = {
   icon,
@@ -15,6 +16,10 @@ export const pageHome = {
       F.array({
         name: "hero",
         of: [F.field("heroHome")],
+        validation: (Rule) => Rule.max(1),
+        components: {
+          input: ArrayMaxItems,
+        },
       }),
       F.array({
         name: "components",

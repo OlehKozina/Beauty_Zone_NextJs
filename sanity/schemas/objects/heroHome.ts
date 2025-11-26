@@ -9,6 +9,9 @@ export const heroHome = defineType(
 
     fields: [
       F.string({
+        name: "label",
+      }),
+      F.text({
         name: "heading",
       }),
       F.file({

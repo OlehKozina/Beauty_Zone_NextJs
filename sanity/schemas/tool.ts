@@ -14,8 +14,13 @@ export const F = {
     icon?: any;
     preview?: any;
   }) => defineType({ type: "object", ...opts }),
-  array: (opts: { name: string; of: any[]; title?: string }) =>
-    defineField({ type: "array", ...opts }),
+  array: (opts: {
+    name: string;
+    of: any[];
+    title?: string;
+    validation?: (Rule: any) => any;
+    components?: any;
+  }) => defineField({ type: "array", ...opts }),
   field: (type: string) =>
     defineField({
       type,

@@ -1,73 +1,59 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+"use client";
+import { FormFieldType } from "@/types/ContactType";
+import React, { useState } from "react";
+import { useLockScroll } from "@/app/hooks/useLockScroll";
+import PrivacyPolicy from "./PrivacyPolicy";
+import { PortableTextBlock } from "next-sanity";
 
-interface FormProps {
-  onClose: () => void;
-}
-
-const Form: React.FC<FormProps> = ({ onClose }) => {
+const Form = ({
+  buttonLabel,
+  fields,
+  privacyPolicy,
+}: {
+  buttonLabel?: string;
+  fields?: FormFieldType[];
+  privacyPolicy?: PortableTextBlock;
+}) => {
+  const [isPolicyVisible, setIsPolicyVisible] = useState(false);
+  const togglePolicy = () => setIsPolicyVisible((prev) => !prev);
+  useLockScroll(!!isPolicyVisible);
   return (
-    <div className="fixed z-30 flex items-center justify-center top-0 bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] py-5 px-0">
-      <div className="relative w-full max-w-[400px] h-full max-h-[650px] bg-[#011c44] rounded-[32px] p-12 overflow-auto">
-        <FontAwesomeIcon
-          icon={faXmark}
-          className="bg-transparent absolute top-5 right-5 text-white cursor-pointer hover:text-secondary-light"
-          onClick={onClose}
-        />
-        <h2 className="mb-2 text-white text-center text-4xl mt-0 section__titles">
-          Request a call
-        </h2>
-        <p className="relative mx-auto mt-0 mb-8 text-center text-white text-base">
-          Sign up<span>for free</span> and get a present
-        </p>
-        <form className="flex flex-col" name="contact-form">
-          <div className="mb-8">
-            <label className="hidden">Name</label>
+    <form className="flex flex-col" name="contact-form">
+      {!!fields?.length &&
+        fields.map((field) => (
+          <div key={field.label} className="mb-8">
+            <label className="hidden" htmlFor="user-name">
+              {field.label}
+            </label>
             <input
-              className="py-4 px-10 w-[310px] rounded-[32px] border border-solid border-white text-base leading-[1.17] focus:border-gray-500 focus:outline-none focus:bg-white "
+              className="py-4 px-10 w-[310px] rounded-[32px] border border-solid border-white text-base leading-[1.17] focus:border-gray-500 focus:outline-none focus:bg-white text-black"
               type="text"
               id="user-name"
-              name="user-name"
-              placeholder="Name"
-              required
+              name={field.name}
+              placeholder={field.label}
+              required={field.required}
             />
           </div>
-          <div className="mb-8">
-            <label className="hidden">Phone</label>
-            <input
-              className="py-4 px-10 w-[310px] rounded-[32px] border border-solid border-white text-base leading-[1.17] focus:border-gray-500 focus:outline-none focus:bg-white "
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Phone"
-              pattern="^\+[0-9]{12}"
-              required
-            />
-          </div>
-          <div className="mb-8">
-            <label className="hidden">E-mail</label>
-            <input
-              className="py-4 px-10 w-[310px] rounded-[32px] border border-solid border-white text-base leading-[1.17] focus:border-gray-500 focus:outline-none focus:bg-white "
-              type="email"
-              id="e-mail"
-              name="e-mail"
-              placeholder="E-mail"
-              required
-            />
-          </div>
-          <button className="mt-0 mx-auto mb-6 button" type="submit">
-            Sign up for free
-          </button>
-          <p className="my-0 mx-auto max-w-[220px] text-sm text-center text-[#747272]">
-            By clicking the button, I agree to the
-            <a className="text-white ml-2" href="#">
-              privacy policy
-            </a>
-          </p>
-        </form>
+        ))}
+      <button className="mt-0 mx-auto mb-6 button transition-all" type="submit">
+        {buttonLabel}
+      </button>
+      <div className="my-0 mx-auto max-w-[220px] text-sm text-center text-[#747272]">
+        By clicking the button, I agree to the
+        <button
+          type="button"
+          className="text-white ml-2"
+          onClick={togglePolicy}
+        >
+          privacy policy
+        </button>
+        <PrivacyPolicy
+          onClose={togglePolicy}
+          privacyPolicy={privacyPolicy}
+          isVisible={isPolicyVisible}
+        />
       </div>
-    </div>
+    </form>
   );
 };
 
