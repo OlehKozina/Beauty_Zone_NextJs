@@ -4,6 +4,7 @@ import { FormType } from "./ContactType";
 export type NavigationType = {
   navigation?: {
     title?: string;
+    slug?: string;
   }[];
   privacyPolicy?: PortableTextBlock;
   form?: FormType;

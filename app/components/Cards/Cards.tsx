@@ -9,17 +9,18 @@ const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 export default function Cards({
   heading,
   cards,
+  id,
 }: {
   cards?: CardsType;
   heading?: string;
-  _id?: string;
+  id?: string;
 }) {
   if (!cards) return;
   return (
     <section
       className="relative pb-0 section"
       style={{ background: "rgb(255, 255, 255)" }}
-      id="Why_us"
+      id={id}
     >
       <div className="container">
         <h2

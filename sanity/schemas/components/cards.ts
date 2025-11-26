@@ -9,6 +9,7 @@ export const cards = defineType(
 
     fields: [
       F.text({ name: "heading" }),
+      F.string({ name: "id" }),
       F.array({
         name: "cards",
         of: [

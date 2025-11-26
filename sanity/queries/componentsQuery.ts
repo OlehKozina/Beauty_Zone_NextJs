@@ -8,14 +8,14 @@ const cardQuery = `{
 
 const cardsQuery = `
     _type == "cards" => {
-      "_id": navLink->_id,
+      id,
       heading,
       cards[] ${cardQuery}
     }
 `;
 const mediaWithTextQuery = `
     _type == "mediaWithText" =>{
-      "_id": navLink->_id,
+      id,
       heading, 
       content,
       "image": image.asset->url,
@@ -33,7 +33,7 @@ const galleryQuery = `
 `;
 const sliderQuery = `
     _type == "slider" =>{
-      "_id": navLink->_id,
+      id,
       heading,
       slides[]${cardQuery}
     }
@@ -66,7 +66,7 @@ const mediaGridWithTextQuery = `
 `;
 const contactQuery = `
     _type == "contact" =>{
-      "_id": navLink->_id,
+      id,
       heading,
       direction,
       form->{

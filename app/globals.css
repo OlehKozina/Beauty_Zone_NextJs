@@ -23,6 +23,9 @@ p {
 address {
   font-style: normal;
 }
+html {
+  scroll-behavior: smooth;
+}
 .section {
   padding: 48px 0;
 }

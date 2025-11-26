@@ -1,40 +1,48 @@
 import React from "react";
 import Image from "next/image";
 import { Play } from "next/font/google";
+import Heading from "../Heading";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-const MediaWithText = () => {
+interface MediaWithTextProps {
+  id?: string;
+  heading?: string;
+  content?: PortableTextBlock;
+  image?: string;
+  horizontalImage?: string;
+}
+
+const MediaWithText = ({
+  heading,
+  content,
+  horizontalImage,
+  image,
+  id,
+}: MediaWithTextProps) => {
   return (
-    <section className="pb-0  section" id="About_us">
+    <section className="pb-0  section" id={id}>
       <div className="container">
         <div className="relative flex">
           <div className="flex flex-col gap-10 text-xl text-center lg:max-w-[709px] lg:text-start">
-            <h2
+            <Heading
+              heading={heading}
               className={`mb-0 mt-0 font-bold ml-1 lg:ml-0 lg:mb-[53px] lg:mt-[53px] section-titles ${play.className}`}
-            >
-              Transform in <br />
-              <span className="text-secondary-light">beauty zone!</span>
-            </h2>
-            <p className="intro-section__info">
-              Our cosmetology clinic offers you professional services for facial
-              and body skin care.
-            </p>
-            <p className="py-0 px-12 md:px-[200px] lg:p-0">
-              At Beauty zone, we guarantee the highest quality standards and
-              pleasant service. Our cosmetology procedures and drugs will help
-              you maintain your beauty and youth. Beauty is with us forever!
-            </p>
+            />
+            {content && <PortableText value={content} />}
           </div>
           <ul className="hidden lg:block">
             <li>
-              <Image
-                width={327}
-                height={327}
-                className="rounded-full hidden lg:block"
-                src="/before.jpg"
-                alt="before"
-              />
+              {image && (
+                <Image
+                  width={327}
+                  height={327}
+                  className="rounded-full hidden lg:block"
+                  src={image}
+                  alt="before"
+                />
+              )}
             </li>
             <li>
               <Image
@@ -46,13 +54,15 @@ const MediaWithText = () => {
               />
             </li>
             <li>
-              <Image
-                width={327}
-                height={327}
-                className="relative left-[172px] rounded-full hidden lg:block"
-                src="/after.jpg"
-                alt="after"
-              />
+              {horizontalImage && (
+                <Image
+                  width={327}
+                  height={327}
+                  className="relative left-[172px] rounded-full hidden lg:block"
+                  src={horizontalImage}
+                  alt="after"
+                />
+              )}
             </li>
             <li>
               <Image

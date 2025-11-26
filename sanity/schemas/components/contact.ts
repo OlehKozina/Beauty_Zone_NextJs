@@ -11,6 +11,9 @@ export const contact = defineType(
       F.string({
         name: "heading",
       }),
+      F.string({
+        name: "id",
+      }),
       F.reference({
         name: "form",
         to: [{ type: "form" }],

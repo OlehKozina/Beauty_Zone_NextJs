@@ -1,12 +1,28 @@
 import React from "react";
 import Image from "next/image";
 import { Play } from "next/font/google";
+import { PortableTextBlock } from "next-sanity";
+import { FormType } from "@/types/ContactType";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-const Contacts = () => {
+export interface ContactProps {
+  id?: string;
+  heading?: string;
+  form?: FormType;
+  direction?: string;
+  privacyPolicy?: PortableTextBlock;
+}
+
+const Contacts = ({
+  heading,
+  form,
+  direction,
+  privacyPolicy,
+  id,
+}: ContactProps) => {
   return (
-    <section className="pt-0 relative pb-0 lg:pb-10 section" id="Contacts">
+    <section className="pt-0 relative pb-0 lg:pb-10 section" id={id}>
       <div className="flex justify-center container">
         <div className="max-w-[1059px]">
           <h2 className={`section-titles text-center mb-5 ${play.className}`}>

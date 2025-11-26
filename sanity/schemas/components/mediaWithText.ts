@@ -22,6 +22,9 @@ export const mediaWithText = defineType(
         name: "content",
         of: [{ type: "block" }],
       }),
+      F.string({
+        name: "id",
+      }),
     ],
 
     preview: {

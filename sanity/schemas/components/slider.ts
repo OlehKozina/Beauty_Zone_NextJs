@@ -10,6 +10,9 @@ export const slider = defineType(
       F.string({
         name: "heading",
       }),
+      F.string({
+        name: "id",
+      }),
       F.array({
         name: "slides",
         of: [
