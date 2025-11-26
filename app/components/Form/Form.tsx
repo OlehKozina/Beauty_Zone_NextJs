@@ -17,8 +17,33 @@ const Form = ({
   const [isPolicyVisible, setIsPolicyVisible] = useState(false);
   const togglePolicy = () => setIsPolicyVisible((prev) => !prev);
   useLockScroll(!!isPolicyVisible);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+      }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      alert(`Error: ${data.message}`);
+      return;
+    }
+
+    alert("Message sent!");
+    form.reset();
+  };
   return (
-    <form className="flex flex-col" name="contact-form">
+    <form className="flex flex-col" name="contact-form" onSubmit={handleSubmit}>
       {!!fields?.length &&
         fields.map((field) => (
           <div key={field.label} className="mb-8">
@@ -27,7 +52,7 @@ const Form = ({
             </label>
             <input
               className="py-4 px-10 w-[310px] rounded-[32px] border border-solid border-white text-base leading-[1.17] focus:border-gray-500 focus:outline-none focus:bg-white text-black"
-              type="text"
+              type={field.type}
               id="user-name"
               name={field.name}
               placeholder={field.label}
