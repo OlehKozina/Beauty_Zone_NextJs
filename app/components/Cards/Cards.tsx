@@ -6,7 +6,7 @@ import { PortableText } from "@portabletext/react";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-export default async function Why() {
+export default async function Cards() {
   const whys = await getWhys();
   return (
     <section

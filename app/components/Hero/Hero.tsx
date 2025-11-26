@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Form from "./Form";
+import Form from "../Form/Form";
 import { Play } from "next/font/google";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });

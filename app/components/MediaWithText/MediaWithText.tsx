@@ -4,7 +4,7 @@ import { Play } from "next/font/google";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
-const Intro = () => {
+const MediaWithText = () => {
   return (
     <section className="pb-0  section" id="About_us">
       <div className="container">
@@ -70,4 +70,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default MediaWithText;

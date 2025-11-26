@@ -1,17 +1,19 @@
-import { createClient, groq } from "next-sanity";
-import { Procedure } from "@/types/Procedure";
-import { Why } from "@/types/Why";
+import { createClient } from "next-sanity";
 
-export async function getProcedures(): Promise<Procedure[]> {
-  const procedure = createClient({
-    projectId: "4poviy2p",
-    dataset: "production",
-    apiVersion: "2024-08-22",
-    useCdn: true,
-    token: process.env.SANITY_API_TOKEN,
-  });
-  return procedure.fetch(
-    groq`*[_type =='procedure']{
+const client = createClient({
+  apiVersion: "2024-08-22",
+  dataset: "production",
+  projectId: "4poviy2p",
+  useCdn: false,
+});
+
+async function fetchNoCache(query: string, params: any = {}) {
+  return client.fetch(query, params, { cache: "no-store" });
+}
+
+export async function getProcedures() {
+  return fetchNoCache(
+    `*[_type =='procedure']{
     _id,
     _createdAt,
     name,
@@ -23,16 +25,9 @@ export async function getProcedures(): Promise<Procedure[]> {
   );
 }
 
-export async function getWhys(): Promise<Why[]> {
-  const why = createClient({
-    projectId: "4poviy2p",
-    dataset: "production",
-    apiVersion: "2024-08-22",
-    useCdn: true,
-    token: process.env.SANITY_API_TOKEN,
-  });
-  return why.fetch(
-    groq`*[_type =='why']{
+export async function getWhys() {
+  return fetchNoCache(
+    `*[_type =='why']{
     _id,
     _createdAt,
     name,

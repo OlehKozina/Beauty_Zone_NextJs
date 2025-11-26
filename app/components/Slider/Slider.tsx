@@ -14,7 +14,7 @@ interface Procedure {
   image: string;
 }
 
-export default function Procedures() {
+export default function Slider() {
   const [procedures, setProcedures] = useState<Procedure[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesPerPage, setSlidesPerPage] = useState(1);

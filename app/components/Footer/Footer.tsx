@@ -4,6 +4,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { Play } from "next/font/google";
+import Image from "next/image";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -139,10 +140,12 @@ const Footer = () => {
           </nav>
         </div>
       </div>
-      <img
-        className="hidden lg:block lg:w-[247px] lg:h-[152px] lg:absolute lg:bottom-0 lg:right-0"
+      <Image
+        className="hidden lg:block lg:absolute lg:bottom-0 lg:right-0"
         src="/medicine.png"
-        alt=""
+        alt="medicine"
+        width={247}
+        height={152}
       />
     </footer>
   );
