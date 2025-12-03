@@ -43,6 +43,15 @@ export function getHeader() {
   }`);
 }
 
+export function getTopBar() {
+  return fetchNoCache(`*[_type == "topBar"][0]{
+    address,
+    schedule,
+    phone,
+    socialLinks,
+  }`);
+}
+
 export function getFooter() {
   return fetchNoCache(
     `*[_type == "footer"][0]{

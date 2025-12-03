@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import { getHeader, getFooter } from "@/sanity/sanity-utils";
-
+import { getHeader, getFooter, getTopBar } from "@/sanity/sanity-utils";
+import TopBar from "./components/TopBar";
+import CallButton from "./components/CallButton";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -18,13 +19,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [header, footer] = await Promise.all([getHeader(), getFooter()]);
+  const [header, footer, topBar] = await Promise.all([
+    getHeader(),
+    getFooter(),
+    getTopBar(),
+  ]);
   return (
     <html lang="en">
       <body className={roboto.className}>
+        <TopBar topBar={topBar} />
         <Header header={header} />
         {children}
         <Footer footer={footer} />
+        <CallButton />
       </body>
     </html>
   );

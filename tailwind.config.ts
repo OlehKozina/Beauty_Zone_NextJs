@@ -1,19 +1,23 @@
 import type { Config } from "tailwindcss";
+import {
+  screens,
+  colors,
+  duration,
+  type,
+  boxShadow,
+  zIndex,
+} from "./app/design/tokens";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./app/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens,
+    colors,
+    ...type,
     extend: {
-      colors: {
-        "primary-dark": "#000000",
-        "primary-light": "#FFFFFF",
-        "secondary-light": "#2B7FFF",
-        "secondary-dark": "#011C44",
-      },
+      boxShadow: boxShadow,
+      transitionDuration: duration,
+      zIndex,
     },
   },
   plugins: [],

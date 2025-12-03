@@ -8,8 +8,6 @@ import { NavigationType } from "@/types/Navigation";
 import Image from "next/image";
 import { buildSocialLinks } from "./utils";
 
-const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
-
 const Header = ({ header }: { header: NavigationType }) => {
   const [isMobMenuVisible, setIsMobMenuVisible] = useState(false);
   const openMenu = () => setIsMobMenuVisible(true);
@@ -19,7 +17,7 @@ const Header = ({ header }: { header: NavigationType }) => {
 
   return (
     <>
-      <header className="flex top-0 left-0 absolute w-full z-10">
+      <header className="mt-14 flex top-0 left-0 absolute w-full z-10">
         <div className="w-full max-w-[1288px] mx-auto">
           <div className="flex flex-grow items-center bg-transparent gap-[40px] z-2 justify-around lg:bg-[#ffffff40]">
             <nav className="flex items-center justify-between flex-grow gap-10">
@@ -43,24 +41,6 @@ const Header = ({ header }: { header: NavigationType }) => {
                     </li>
                   ))}
               </ul>
-              <div className="hidden lg:flex lg:gap-10 lg:mr-5">
-                {!!socialLinks?.length &&
-                  socialLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      aria-label={link.label}
-                      className="hover:text-secondary-light transition-all w-6 h-6"
-                    >
-                      {link.icon && (
-                        <FontAwesomeIcon
-                          icon={link.icon}
-                          className="text-2xl"
-                        />
-                      )}
-                    </a>
-                  ))}
-              </div>
             </nav>
             <button type="button" onClick={openMenu}>
               <FontAwesomeIcon

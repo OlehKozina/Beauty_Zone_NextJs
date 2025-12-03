@@ -3,7 +3,7 @@ import { deskTool } from "sanity/desk";
 import schemas from "./sanity/schemas";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiLayoutBottom2Line } from "react-icons/ri";
-import { FaWpforms, FaBars } from "react-icons/fa";
+import { FaWpforms, FaBars, FaAd } from "react-icons/fa";
 import { BiLockAlt } from "react-icons/bi";
 
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
@@ -14,6 +14,7 @@ const singletonTypes = new Set([
   "pageHome",
   "form",
   "privacyPolicy",
+  "topBar",
 ]);
 
 const config = defineConfig({
@@ -50,6 +51,11 @@ const config = defineConfig({
               .id("form")
               .icon(FaWpforms)
               .child(S.document().schemaType("form").documentId("form")),
+            S.listItem()
+              .title("Top Bar")
+              .id("topBar")
+              .icon(FaAd)
+              .child(S.document().schemaType("topBar").documentId("topBar")),
             S.listItem()
               .title("Privacy Policy")
               .id("privacyPolicy")
