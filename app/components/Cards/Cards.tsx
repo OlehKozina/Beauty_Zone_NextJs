@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Play } from "next/font/google";
 import { CardsType } from "@/types/Cards";
 import { PortableText } from "@portabletext/react";
+import Heading from "../Heading";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -23,11 +24,11 @@ export default function Cards({
       id={id}
     >
       <div className="container">
-        <h2
+        <Heading
           className={`section-titles text-center max-w-[450px] mt-0 relative z-10 ${play.className}`}
-        >
-          {heading}
-        </h2>
+          heading={heading}
+        />
+
         <div className="flex items-center justify-around gap-8 py-6 px-8">
           <ul className="flex items-center justify-center gap-10 pl-0 flex-wrap">
             {!!cards?.length &&

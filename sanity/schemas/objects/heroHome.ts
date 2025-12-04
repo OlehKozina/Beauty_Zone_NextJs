@@ -11,6 +11,15 @@ export const heroHome = defineType(
       F.string({
         name: "label",
       }),
+      F.object({
+        name: "button",
+        fields: [
+          F.string({
+            name: "name",
+          }),
+          F.string({ name: "link" }),
+        ],
+      }),
       F.text({
         name: "heading",
       }),

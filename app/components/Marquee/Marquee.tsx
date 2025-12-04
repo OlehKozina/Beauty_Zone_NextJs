@@ -10,13 +10,13 @@ function MarqueeWithText({ logos }: { logos?: { logo?: string }[] }) {
       <Marquee
         gradient={false}
         speed={50}
-        className="rounded-3xl md:rounded-none bg-brand-dark bg-opacity-80"
+        className="rounded-3xl md:rounded-none bg-brand-dark bg-opacity-80 flex gap-6"
       >
         {!!logos?.length &&
           logos.map((item, i) => (
-            <div key={i} className="flex items-center mr-8">
+            <div key={i} className="flex items-center gap-6">
               <Image
-                className="w-40 h-20"
+                className="w-32 h-32 mr-8"
                 src={item?.logo || ""}
                 width={40}
                 height={20}

@@ -8,4 +8,8 @@ export type HeroType = {
   privacyPolicy?: PortableTextBlock;
   form?: FormType;
   content?: PortableTextBlock;
+  button?: {
+    name?: string;
+    link?: string;
+  };
 };

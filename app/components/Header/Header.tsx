@@ -18,12 +18,12 @@ const Header = ({ header }: { header: NavigationType }) => {
   return (
     <>
       <header className="mt-14 flex top-0 left-0 absolute w-full z-10">
-        <div className="w-full max-w-[1288px] mx-auto">
-          <div className="flex flex-grow items-center bg-transparent gap-[40px] z-2 justify-around lg:bg-[#ffffff40]">
+        <div className="w-full max-w-[80rem] mx-auto">
+          <div className="flex p-4 rounded-b-xl flex-grow items-center gap-[40px] z-2 justify-around bg-primary-light">
             <nav className="flex items-center justify-between flex-grow gap-10">
-              <a className="no-underline text-primary-dark" href="#">
+              <a className="no-underline text-white" href="#">
                 <Image
-                  className="mt-2"
+                  className="mt-2 invert"
                   src="/logo.png"
                   alt="logo"
                   width={100}
@@ -35,7 +35,7 @@ const Header = ({ header }: { header: NavigationType }) => {
                   navigation.map((link) => (
                     <li
                       key={link.title}
-                      className="no-underline transition-all text-primary-dark hover:text-secondary-light"
+                      className="no-underline transition-all text-white hover:text-secondary-light"
                     >
                       <a href={`#${link.slug}`}>{link.title}</a>
                     </li>

@@ -7,7 +7,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Beauty Zone",

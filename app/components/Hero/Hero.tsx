@@ -13,7 +13,8 @@ const Hero = ({ hero }: { hero: HeroType }) => {
   const openForm = () => setIsFormVisible(true);
   const closeForm = () => setIsFormVisible(false);
   if (!hero) return;
-  const { label, heading, form, privacyPolicy, videoUrl, content } = hero;
+  const { label, heading, form, privacyPolicy, videoUrl, content, button } =
+    hero;
   return (
     <>
       <section className="px-0 py-[100px] flex flex-col items-end justify-center h-[424px] bg-no-repeat bg-center bg-cover relative md:h-[824px] lg:h-[1024px]">
@@ -27,26 +28,31 @@ const Hero = ({ hero }: { hero: HeroType }) => {
             className="w-full h-full object-cover"
           />
         </motion.div>
-        <div className="container">
-          <p className="text-[21px] mb-4 text-black pl-3 m-0 text-center lg:text-end">
+        <div className="container flex flex-col items-end">
+          <p className="text-xl mb-4 text-black pl-3 m-0 text-center">
             {label}
           </p>
           <h1
-            className={`text-secondary-light text-6xl font-bold mb-0 whitespace-pre-line leading-none mt-0 text-center md:text-8xl lg:text-end lg:text-[120px] ${play.className}`}
+            className={`text-secondary-light text-end text-6xl font-bold mb-0 whitespace-pre-line leading-none mt-0 md:text-8xl lg:text-[120px] ${play.className}`}
             lang="en"
           >
             {heading}
           </h1>
-          <div className="flex justify-center lg:justify-end">
+          <div className="font-normal text-base mt-5 text-center lg:text-end max-w-[25rem]">
+            {content && <PortableText value={content} />}
+          </div>
+          <div className="flex gap-4">
             <button
-              className="button transition-all"
+              className="button hover:bg-opacity-60 transition-all bg-secondary-light text-white"
               type="button"
               onClick={openForm}
             >
               Request a call
             </button>
+            <a className="button transition-all" href={`#${button?.link}`}>
+              {button?.name}
+            </a>
           </div>
-
           {isFormVisible && (
             <Form
               onClose={closeForm}
@@ -54,9 +60,6 @@ const Hero = ({ hero }: { hero: HeroType }) => {
               privacyPolicy={privacyPolicy}
             />
           )}
-          <div className="font-normal text-sm mt-5 text-center lg:text-end whitespace-pre-line">
-            {content && <PortableText value={content} />}
-          </div>
         </div>
       </section>
     </>

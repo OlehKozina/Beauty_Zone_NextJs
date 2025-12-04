@@ -1,83 +1,43 @@
-import React from "react";
-import Image from "next/image";
-import { Play } from "next/font/google";
-import Heading from "../Heading";
+"use client";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
-
-const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
+import React from "react";
+import Heading from "../Heading";
+import Illustration from "./Illustration";
 
 interface MediaWithTextProps {
-  id?: string;
+  _id?: string;
   heading?: string;
   content?: PortableTextBlock;
   image?: string;
   horizontalImage?: string;
 }
 
-const MediaWithText = ({
-  heading,
-  content,
-  horizontalImage,
-  image,
-  id,
-}: MediaWithTextProps) => {
+function MediaWithText({ heading, content, image, _id }: MediaWithTextProps) {
   return (
-    <section className="pb-0  section" id={id}>
-      <div className="container">
-        <div className="relative flex">
-          <div className="flex flex-col gap-10 text-xl text-center lg:max-w-[709px] lg:text-start">
+    <section
+      className="py-10 md:py-20 text-sm md:text-base relative overflow-hidden scroll-mt-10 max-md:scroll-mt-16 text-primary-dark"
+      id="traditions"
+    >
+      <div className="container relative">
+        <div className="flex flex-col md:flex-row items-start max-md:items-center justify-center gap-10 md:gap-0 md:space-x-10 text-base md:text-xl">
+          <div className="max-w-[35rem] lg:max-w-[43rem]">
             <Heading
               heading={heading}
-              className={`mb-0 mt-0 font-bold ml-1 lg:ml-0 lg:mb-[53px] lg:mt-[53px] section-titles ${play.className}`}
+              className="mb-6 mx-auto text-center md:mb-10 font-light"
             />
-            {content && <PortableText value={content} />}
+            {content && (
+              <div className="mb-5 font-extrathin">
+                <PortableText value={content} />
+              </div>
+            )}
           </div>
-          <ul className="hidden lg:block">
-            <li>
-              {image && (
-                <Image
-                  width={327}
-                  height={327}
-                  className="rounded-full hidden lg:block"
-                  src={image}
-                  alt="before"
-                />
-              )}
-            </li>
-            <li>
-              <Image
-                width={56}
-                height={56}
-                className="absolute top-[361px] right-[376px]"
-                src="/star_big.svg"
-                alt="star"
-              />
-            </li>
-            <li>
-              {horizontalImage && (
-                <Image
-                  width={327}
-                  height={327}
-                  className="relative left-[172px] rounded-full hidden lg:block"
-                  src={horizontalImage}
-                  alt="after"
-                />
-              )}
-            </li>
-            <li>
-              <Image
-                width={56}
-                height={56}
-                className="absolute top-[18px] right-[-30px]"
-                src="/star_small.svg"
-                alt="star"
-              />
-            </li>
-          </ul>
+          <div className="max-w-[25rem] w-full hidden md:block">
+            <Illustration image={image} className="rounded-t-full" />
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default MediaWithText;

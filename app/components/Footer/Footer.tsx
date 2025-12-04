@@ -23,32 +23,32 @@ function Footer({ footer }: { footer?: NavigationType }) {
   const socialLinks = buildSocialLinks(_socialLinks);
 
   return (
-    <footer className="bg-secondary-dark relative">
-      <div className="container min-h-[200px]">
+    <footer className="bg-primary-light relative">
+      <div className="container py-4">
         <div className="block items-start gap-10 lg:flex">
           <nav className="block text-center lg:flex lg:items-start lg:flex-grow lg:gap-10">
             <a className="link" href="BeautyZoneSite.html">
               <Image
-                className="mt-0 relative top-3 ml-3 md:mt-9 md:top-3 lg:top-0 invert"
+                className="relative top-3 ml-3 md:top-3 lg:top-0 invert"
                 src="/logo.png"
                 alt="logo"
                 width={100}
                 height={50}
               />
             </a>
-            <div className="block gap-0 flex-grow justify-evenly mt-4 lg:gap-[64px] lg:flex">
-              <ul className="pl-0 lg:pl-10">
+            <div className="block gap-0 flex-grow justify-evenly lg:gap-[64px] lg:flex">
+              <ul className="pl-0 lg:pl-10 flex justify-center gap-20 grow">
                 {!!navigation?.length &&
                   navigation.map((link) => (
                     <li
                       key={link.title}
-                      className="text-primary-light no-underline transition-all hover:text-secondary-light"
+                      className="text-white no-underline transition-all hover:text-secondary-light"
                     >
                       <a href={`#${link.slug}`}>{link.title}</a>
                     </li>
                   ))}
               </ul>
-              <address>
+              {/* <address>
                 <ul className="hidden lg:block">
                   {contactLinks.map(
                     (link) =>
@@ -71,42 +71,30 @@ function Footer({ footer }: { footer?: NavigationType }) {
                       )
                   )}
                 </ul>
-                <ul className="flex gap-6 pl-0 justify-center pl-18">
-                  {socialLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      aria-label={link.label}
-                      className="text-white w-6 h-6 hover:text-secondary-light transition-all"
-                    >
-                      {link.icon && (
-                        <FontAwesomeIcon
-                          icon={link.icon}
-                          className="text-2xl"
-                        />
-                      )}
-                    </a>
-                  ))}
-                </ul>
-              </address>
+              </address> */}
+              <ul className="flex gap-6 pl-0 justify-center pl-18">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    aria-label={link.label}
+                    className="text-white w-6 h-6 hover:text-secondary-light transition-all"
+                  >
+                    {link.icon && (
+                      <FontAwesomeIcon icon={link.icon} className="text-2xl" />
+                    )}
+                  </a>
+                ))}
+              </ul>
             </div>
-            <div className="mt-0 mr-3 pl-0 lg:pl-10 lg:mt-4">
+            {/* <div className="mt-0 mr-3 pl-0 lg:pl-10 lg:mt-4">
               <p className="text-[#747272] text-sm font-normal relative">
                 &copy;Data is protected!
               </p>
-            </div>
+            </div> */}
           </nav>
         </div>
       </div>
-      {image && (
-        <Image
-          className="hidden lg:block lg:absolute lg:bottom-0 lg:right-0"
-          src={image}
-          alt="medicine"
-          width={247}
-          height={152}
-        />
-      )}
     </footer>
   );
 }

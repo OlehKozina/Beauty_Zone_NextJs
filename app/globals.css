@@ -7,11 +7,17 @@
 *::before {
   box-sizing: border-box;
 }
+:root {
+  --color-primary-dark: #2c233e;
+  --color-secondary-dark: #572a4d;
+  --color-primary-light: #cb9a9f;
+  --color-secondary-light: #d07669;
+}
 ul {
   list-style-type: none;
 }
 body {
-  color: var(--color_primarydark);
+  color: var(--color-primary-dark);
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -31,12 +37,13 @@ html {
 }
 
 .button {
-  padding: 16px 32px;
+  padding: 8px 16px;
   border-radius: 32px;
   border: solid;
   cursor: pointer;
+  color: white;
+  background-color: var(--color-secondary-light);
   &:hover {
-    background-color: black;
     color: white;
   }
   margin: 20px 0;
