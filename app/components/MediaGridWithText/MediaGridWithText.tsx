@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import Heading from "../Heading";
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 export interface MediaGridWithTextProps {
@@ -22,11 +21,11 @@ const MediaGridWithText = ({
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
 
   return (
-    <section className="relative p-7 sm:p-14 max-md:scroll-mt-16 scroll-mt-24">
+    <section className="relative text-white p-7 sm:p-14 max-md:scroll-mt-16 scroll-mt-24 bg-secondary-light/40">
       <div className="container">
         {heading && (
           <Heading
-            className="text-3xl font-bold text-left whitespace-pre-line absolute max-sm:-top-2 top-5 md:top-0 left-10 sm:left-20 z-above-content"
+            className="text-3xl font-bold text-left whitespace-pre-line absolute max-sm:-top-2 top-5 md:top-0 z-above-content"
             heading={heading}
           />
         )}
@@ -64,13 +63,6 @@ const MediaGridWithText = ({
           )}
         </div>
       </div>
-      <Image
-        className="absolute inset-0 rotate-180 z-under w-full overflow-hidden"
-        width={950}
-        height={450}
-        src="/wave.png"
-        alt="wave"
-      />
     </section>
   );
 };

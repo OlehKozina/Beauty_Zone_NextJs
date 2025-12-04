@@ -51,13 +51,6 @@ export default function Cards({
                 </li>
               ))}
           </ul>
-          <Image
-            className="absolute z-0 w-full overflow-hidden"
-            width={950}
-            height={450}
-            src="/wave.png"
-            alt="wave"
-          />
         </div>
       </div>
     </section>

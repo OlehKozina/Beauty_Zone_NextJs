@@ -20,7 +20,6 @@ interface SliderProps {
 
 export default function Slider({ heading, slides, id }: SliderProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     slidesToScroll: 1,
@@ -39,7 +38,6 @@ export default function Slider({ heading, slides, id }: SliderProps) {
       setSelectedIndex(emblaApi.selectedScrollSnap());
     };
 
-    setScrollSnaps(emblaApi.scrollSnapList());
     emblaApi.on("select", onSelect);
     onSelect();
   }, [emblaApi]);
@@ -52,12 +50,12 @@ export default function Slider({ heading, slides, id }: SliderProps) {
   }, [emblaApi]);
 
   return (
-    <section
-      className="py-5 md:py-12 relative overflow-hidden max-md:scroll-mt-16 scroll-mt-10 px-6"
-      id={id}
-    >
+    <section className="relative text-white bg-secondary-dark/40" id={id}>
       <div className="container mx-auto px-4 bg-brand-dark bg-opacity-80 rounded-3xl py-10">
-        <Heading heading={heading} className="mb-6 text-center md:mb-10" />
+        <Heading
+          heading={heading}
+          className="mb-6 text-center md:mb-10 relative z-10"
+        />
         <div className="relative max-w-[21rem] sm:max-w-[42rem] md:max-w-[69rem] mx-auto">
           <div
             className={clsx(
@@ -72,7 +70,7 @@ export default function Slider({ heading, slides, id }: SliderProps) {
                 return (
                   <div
                     key={name}
-                    className="flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_33.3333%] px-2"
+                    className="flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_33.3333%] px-4"
                   >
                     <Slide {...{ content, image, name }} />
                   </div>

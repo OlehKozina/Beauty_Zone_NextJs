@@ -15,7 +15,7 @@ interface MediaWithTextProps {
 function MediaWithText({ heading, content, image, _id }: MediaWithTextProps) {
   return (
     <section
-      className="py-10 md:py-20 text-sm md:text-base relative overflow-hidden scroll-mt-10 max-md:scroll-mt-16 text-primary-dark"
+      className="py-10 text-white md:py-20 text-sm md:text-base relative overflow-hidden scroll-mt-10 max-md:scroll-mt-16 text-primary-dark bg-primary-light/80"
       id="traditions"
     >
       <div className="container relative">
