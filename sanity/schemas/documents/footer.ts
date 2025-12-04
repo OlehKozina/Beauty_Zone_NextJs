@@ -12,12 +12,10 @@ export const footer = {
       of: [{ type: "link" }],
     }),
     F.string({ name: "phone" }),
-    F.string({ name: "email" }),
     F.reference({
       name: "privacyPolicy",
       to: [{ type: "privacyPolicy" }],
     }),
-    F.image({ name: "image" }),
     defineField(
       F.object({
         name: "address",
@@ -31,14 +29,12 @@ export const footer = {
   ],
   preview: {
     select: {
-      email: "email",
       phone: "phone",
     },
-    prepare({ email, phone }: { email?: string; phone?: string }) {
+    prepare({ phone }: { phone?: string }) {
       return {
         title: "Footer",
-        subtitle:
-          email || phone ? `${email || ""} ${phone || ""}` : "No contact info",
+        subtitle: phone ? `${phone || ""}` : "No contact info",
       };
     },
   },

@@ -1,10 +1,13 @@
 "use client";
 import React from "react";
 import { containerVariants, charVariants } from "../Hero/utils";
+import { Raleway } from "next/font/google";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+
+const raleway = Raleway({ subsets: ["latin"], weight: ["400", "700"] });
 
 const Heading = ({
   heading,
@@ -29,7 +32,8 @@ const Heading = ({
       initial="initial"
       animate={inView ? "animate" : "initial"}
       className={clsx(
-        "font-extrabold leading-tight text-3xl md:text-6xl",
+        "font-light leading-relaxed text-3xl md:text-6xl",
+        raleway.className,
         className
       )}
     >

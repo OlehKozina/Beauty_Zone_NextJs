@@ -5,27 +5,21 @@ import { Play } from "next/font/google";
 import Image from "next/image";
 import { NavigationType } from "@/types/Navigation";
 import { buildContactLinks, buildSocialLinks } from "../Header/utils";
+import { faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
 function Footer({ footer }: { footer?: NavigationType }) {
   if (!footer) return;
-  const {
-    navigation,
-    socialLinks: _socialLinks,
-    email,
-    phone,
-    address,
-    image,
-  } = footer;
+  const { navigation, socialLinks: _socialLinks, phone, address } = footer;
 
-  const contactLinks = buildContactLinks(phone, email, address);
+  const contactLinks = buildContactLinks(phone, address);
   const socialLinks = buildSocialLinks(_socialLinks);
 
   return (
-    <footer className="bg-primary-light relative">
-      <div className="container py-4">
-        <div className="block items-start gap-10 lg:flex">
+    <footer className="relative">
+      <div className="container p-4 bg-primary-light rounded-t-xl">
+        <div className="block gap-4 lg:flex lg:flex-col">
           <nav className="block text-center lg:flex lg:items-start lg:flex-grow lg:gap-10">
             <a className="link" href="BeautyZoneSite.html">
               <Image
@@ -87,12 +81,22 @@ function Footer({ footer }: { footer?: NavigationType }) {
                 ))}
               </ul>
             </div>
-            {/* <div className="mt-0 mr-3 pl-0 lg:pl-10 lg:mt-4">
-              <p className="text-[#747272] text-sm font-normal relative">
-                &copy;Data is protected!
-              </p>
-            </div> */}
           </nav>
+        </div>
+      </div>
+      <div className="bg-white py-4 shadow-[0_-4px_10px_rgba(0,0,0,0.10)] z-50 w-full">
+        <div className="max-w-[80rem] mx-auto flex justify-between">
+          <a href={address?.link} className="flex gap-2 items-center">
+            <FontAwesomeIcon icon={faLocationDot} className="text-green" />
+            {address?.name}
+          </a>
+          <div className="flex gap-2 items-center">
+            <FontAwesomeIcon icon={faPhone} className="text-green" />
+            {phone}
+          </div>
+          <p className="text-black/50 text-sm font-normal relative">
+            &copy;Data is protected!
+          </p>
         </div>
       </div>
     </footer>

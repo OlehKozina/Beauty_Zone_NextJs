@@ -1,32 +1,61 @@
 "use client";
 import Marquee from "react-fast-marquee";
+import { useState } from "react";
 import Image from "next/image";
+import ImageModal from "./ImageModal";
 
-function MarqueeWithText({ logos }: { logos?: { logo?: string }[] }) {
+function MarqueeWithImage({ logos }: { logos?: { logo?: string }[] }) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   if (!logos) return null;
 
+  const handleImageClick = (imageUrl: string) => {
+    if (!imageUrl) return;
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedImage(null), 300);
+  };
+
   return (
-    <section className="my-10 md:my-20">
+    <section>
       <Marquee
         gradient={false}
         speed={50}
-        className="rounded-3xl md:rounded-none bg-brand-dark bg-opacity-80 flex gap-6"
+        className="py-10 flex"
+        pauseOnHover={true}
       >
         {!!logos?.length &&
           logos.map((item, i) => (
-            <div key={i} className="flex items-center gap-6">
+            <button
+              key={i}
+              onClick={() => item.logo && handleImageClick(item.logo)}
+              aria-label={`View logo ${i + 1} in full screen`}
+              className="flex items-center hover:scale-105 transition-transform border-button bg-button p-4 rounded-3xl overflow-hidden bg-opacity-80 h-[20rem]"
+            >
               <Image
-                className="w-32 h-32 mr-8"
-                src={item?.logo || ""}
-                width={40}
-                height={20}
-                alt="logo"
+                className="h-full w-auto rounded-3xl object-contain"
+                src={item.logo || ""}
+                width={400}
+                height={400}
+                style={{ objectFit: "contain" }}
+                alt={`Logo ${i + 1}`}
               />
-            </div>
+            </button>
           ))}
       </Marquee>
+      {selectedImage && (
+        <ImageModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          imageUrl={selectedImage}
+        />
+      )}
     </section>
   );
 }
 
-export default MarqueeWithText;
+export default MarqueeWithImage;

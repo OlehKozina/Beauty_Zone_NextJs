@@ -58,9 +58,8 @@ const mediaGridWithTextQuery = `
     _type == "mediaGridWithText" =>{
       "_id": navLink->_id,
       heading,
-      "videoTop": videoTop.asset->url,
-      "videoBottom": videoBottom.asset->url,
-      "image": image.asset->url,
+      "imageTop": imageTop.asset->url,
+      "imageBottom": imageBottom.asset->url,
       text
     }
 `;

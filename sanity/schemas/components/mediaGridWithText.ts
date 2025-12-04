@@ -15,13 +15,13 @@ export const mediaGridWithText = defineType(
         title: "Description",
         rows: 3,
       }),
-      F.file({
-        name: "videoTop",
-        accept: "video/*",
+      F.image({
+        name: "imageTop",
+        hotspot: true,
       }),
-      F.file({
-        name: "videoBottom",
-        accept: "video/*",
+      F.image({
+        name: "imageBottom",
+        hotspot: true,
       }),
     ],
 

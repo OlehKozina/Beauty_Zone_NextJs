@@ -1,7 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { buildSocialLinks } from "../Header/utils";
-import { faLocationDot, faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLocationDot,
+  faClock,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { TopBarType } from "@/types/TopBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,7 +52,12 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
             </div>
           </div>
         )}
-        {phone && <div className="py-2">{phone}</div>}
+        {phone && (
+          <div className="py-2 flex gap-2 items-center">
+            <FontAwesomeIcon icon={faPhone} className="text-green" />
+            {phone}
+          </div>
+        )}
         <div className="flex lg:gap-10 lg:mr-5 items-center">
           {!!socialLinks?.length &&
             socialLinks.map((link) => (

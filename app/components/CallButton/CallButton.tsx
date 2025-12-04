@@ -1,5 +1,6 @@
 "use client";
 import { Phone } from "lucide-react";
+import { motion } from "framer-motion";
 
 const CallButton = () => {
   return (
@@ -12,35 +13,34 @@ const CallButton = () => {
         className="border-none bg-secondary-light shadow-2xl w-full h-full rounded-full transition-all duration-300 hover:scale-110 hover:shadow-xl"
         aria-label="Call or contact"
       >
-        <div className="relative w-full h-full [transform-style:preserve-3d] animate-[flip_4s_linear_infinite] rounded-full">
-          <div className="absolute [backface-visibility:hidden] w-full h-full flex items-center justify-center rounded-full bg-pink-500 text-white">
+        <motion.div
+          className="relative w-full h-full [transform-style:preserve-3d] rounded-full"
+          animate={{ rotateY: [0, 0, 180, 180, 360] }}
+          transition={{
+            duration: 4,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        >
+          <motion.div
+            className="absolute [backface-visibility:hidden] w-full h-full flex items-center justify-center rounded-full bg-pink-500 text-white"
+            animate={{
+              x: [0, -3, 3, -2, 2, 0],
+              rotate: [0, -3, 3, -2, 2, 0],
+            }}
+            transition={{
+              duration: 0.6,
+              repeat: Infinity,
+              repeatDelay: 2,
+            }}
+          >
             <Phone size={32} className="stroke-[1.5]" />
-          </div>
+          </motion.div>
           <div className="[transform:rotateY(180deg)] absolute [backface-visibility:hidden] w-full h-full flex items-center justify-center rounded-full bg-green-600 text-white text-lg font-semibold">
             Call us
           </div>
-        </div>
+        </motion.div>
       </button>
-
-      <style jsx>{`
-        @keyframes flip {
-          0% {
-            transform: rotateY(0deg);
-          }
-          40% {
-            transform: rotateY(0deg);
-          }
-          50% {
-            transform: rotateY(180deg);
-          }
-          90% {
-            transform: rotateY(180deg);
-          }
-          100% {
-            transform: rotateY(360deg);
-          }
-        }
-      `}</style>
     </div>
   );
 };

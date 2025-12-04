@@ -23,7 +23,7 @@ function MediaWithText({ heading, content, image, _id }: MediaWithTextProps) {
           <div className="max-w-[35rem] lg:max-w-[43rem]">
             <Heading
               heading={heading}
-              className="mb-6 mx-auto text-center md:mb-10 font-light"
+              className="mb-6 mx-auto text-center md:mb-10"
             />
             {content && (
               <div className="mb-5 font-extrathin">

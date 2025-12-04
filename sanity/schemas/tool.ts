@@ -7,6 +7,15 @@ export const F = {
     defineField({ type: "text", ...opts }),
   block: (opts: { name: string; title?: string }) =>
     defineField({ type: "array", of: [{ type: "block" }], ...opts }),
+  number: (opts: {
+    name: string;
+    title?: string;
+    options?: { list: number[] };
+  }) =>
+    defineField({
+      type: "number",
+      ...opts,
+    }),
   object: (opts: {
     name: string;
     fields: any[];

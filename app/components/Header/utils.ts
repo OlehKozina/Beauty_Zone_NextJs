@@ -6,12 +6,10 @@ import {
 
 export const buildContactLinks = (
   phone?: string,
-  email?: string,
   address?: { link?: string; name?: string }
 ) =>
   [
     phone ? { href: `tel:${phone}`, label: phone } : null,
-    email ? { href: `mailto:${email}`, label: email } : null,
     address?.link && address?.name
       ? { href: address.link, label: address.name, external: true }
       : null,

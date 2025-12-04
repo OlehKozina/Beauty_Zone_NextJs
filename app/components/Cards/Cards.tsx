@@ -1,11 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { Play } from "next/font/google";
 import { CardsType } from "@/types/Cards";
 import { PortableText } from "@portabletext/react";
 import Heading from "../Heading";
-
-const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Cards({
   heading,
@@ -23,9 +20,9 @@ export default function Cards({
       style={{ background: "rgb(255, 255, 255)" }}
       id={id}
     >
-      <div className="container">
+      <div className="container flex flex-col items-center">
         <Heading
-          className={`section-titles text-center max-w-[450px] mt-0 relative z-10 ${play.className}`}
+          className="text-center max-w-[450px] mt-0 relative z-10"
           heading={heading}
         />
 
@@ -43,7 +40,8 @@ export default function Cards({
                         width={48}
                         height={48}
                         src={card.image}
-                        alt="star"
+                        alt="card-logo"
+                        className="opacity-60"
                       />
                     )}
                     <div className="m-0">

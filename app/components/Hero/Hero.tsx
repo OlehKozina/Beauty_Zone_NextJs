@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import Form from "../Form/ModalForm";
-import { Play } from "next/font/google";
+import { Raleway } from "next/font/google";
 import { PortableText } from "next-sanity";
 import { HeroType } from "@/types/Hero";
 import { motion } from "framer-motion";
 
-const play = Play({ subsets: ["latin"], weight: ["400", "700"] });
+const raleway = Raleway({ subsets: ["latin"], weight: ["400", "700"] });
 
 const Hero = ({ hero }: { hero: HeroType }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -29,27 +29,27 @@ const Hero = ({ hero }: { hero: HeroType }) => {
           />
         </motion.div>
         <div className="container flex flex-col items-end">
-          <p className="text-xl mb-4 text-black pl-3 m-0 text-center">
-            {label}
-          </p>
           <h1
-            className={`text-secondary-light text-end text-6xl font-bold mb-0 whitespace-pre-line leading-none mt-0 md:text-8xl lg:text-[120px] ${play.className}`}
+            className={`text-secondary-light text-end text-6xl font-thin mb-0 whitespace-pre-line leading-none mt-0 md:text-8xl lg:text-[120px] ${raleway.className}`}
             lang="en"
           >
             {heading}
           </h1>
-          <div className="font-normal text-base mt-5 text-center lg:text-end max-w-[25rem]">
+          <div className="font-normal text-base mt-5 text-center lg:text-end max-w-[25rem] font-light">
             {content && <PortableText value={content} />}
           </div>
           <div className="flex gap-4">
             <button
-              className="button hover:bg-opacity-60 transition-all bg-secondary-light text-white"
+              className="button hover:bg-opacity-60 transition-all bg-secondary-light text-white hover:scale-105"
               type="button"
               onClick={openForm}
             >
               Request a call
             </button>
-            <a className="button transition-all" href={`#${button?.link}`}>
+            <a
+              className="button transition-all hover:scale-105"
+              href={`#${button?.link}`}
+            >
               {button?.name}
             </a>
           </div>
