@@ -14,7 +14,7 @@ const ArrowButton = ({
     <button
       onClick={onClick}
       className={clsx(
-        "shadow-xl absolute bg-brand-brick hover:opacity-100 opacity-90 rounded-full h-8 w-8 top-1/2 transform -translate-y-1/2 p-2 z-5 transition-all text-white",
+        "shadow-xl absolute bg-white hover:opacity-100 opacity-90 rounded-full h-8 w-8 top-1/2 transform -translate-y-1/2 p-2 z-5 transition-all text-primary-dark flex items-center justify-center",
         direction === "left"
           ? "left-0 hover:-translate-x-1/2"
           : "right-0 hover:translate-x-1/2"

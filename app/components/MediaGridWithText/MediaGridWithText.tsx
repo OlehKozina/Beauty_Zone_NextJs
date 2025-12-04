@@ -21,11 +21,11 @@ const MediaGridWithText = ({
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
 
   return (
-    <section className="relative text-white p-7 sm:p-14 max-md:scroll-mt-16 scroll-mt-24 bg-secondary-light/40">
-      <div className="container">
+    <section className="relative pt-8 text-white max-md:scroll-mt-16 scroll-mt-24 bg-secondary-light/40">
+      <div className="container p-7 sm:p-14 relative">
         {heading && (
           <Heading
-            className="text-3xl font-bold text-left whitespace-pre-line absolute max-sm:-top-2 top-5 md:top-0 z-above-content"
+            className="text-3xl font-bold text-left absolute top-0 z-above-content"
             heading={heading}
           />
         )}

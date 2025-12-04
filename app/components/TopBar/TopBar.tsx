@@ -11,10 +11,15 @@ import { TopBarType } from "@/types/TopBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TopBar = ({ topBar }: { topBar: TopBarType }) => {
-  console.log("topBar", topBar);
   const { socialLinks: _socialLinks, address, phone, schedule } = topBar;
   const socialLinks = buildSocialLinks(_socialLinks);
   const [hidden, setHidden] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const updateScroll = () => {
@@ -27,6 +32,7 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
     window.addEventListener("scroll", updateScroll);
     return () => window.removeEventListener("scroll", updateScroll);
   }, []);
+
   return (
     <section
       className={clsx(
@@ -43,18 +49,36 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
               rel="noopener noreferrer"
               className="flex gap-2 items-center"
             >
-              <FontAwesomeIcon icon={faLocationDot} className="text-green" />
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className="text-green fa-fw"
+                size="lg"
+                fixedWidth
+                style={{ width: "1.25rem", height: "1.25rem" }}
+              />
               {address.name}
             </a>
             <div className="flex gap-2 items-center">
-              <FontAwesomeIcon icon={faClock} className="text-green" />
+              <FontAwesomeIcon
+                icon={faClock}
+                className="text-green fa-fw"
+                size="lg"
+                fixedWidth
+                style={{ width: "1.25rem", height: "1.25rem" }}
+              />
               {schedule}
             </div>
           </div>
         )}
         {phone && (
           <div className="py-2 flex gap-2 items-center">
-            <FontAwesomeIcon icon={faPhone} className="text-green" />
+            <FontAwesomeIcon
+              icon={faPhone}
+              className="text-green fa-fw"
+              size="lg"
+              fixedWidth
+              style={{ width: "1.25rem", height: "1.25rem" }}
+            />
             {phone}
           </div>
         )}
@@ -70,7 +94,9 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
                 {link.icon && (
                   <FontAwesomeIcon
                     icon={link.icon}
-                    className="text-xl text-green"
+                    className="text-green fa-fw"
+                    fixedWidth
+                    style={{ width: "1.25rem", height: "1.25rem" }}
                   />
                 )}
               </a>

@@ -41,7 +41,6 @@ export default function Cards({
                         height={48}
                         src={card.image}
                         alt="card-logo"
-                        className="opacity-60"
                       />
                     )}
                     <div className="m-0">
