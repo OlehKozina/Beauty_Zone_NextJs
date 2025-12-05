@@ -36,10 +36,10 @@ const MediaGridWithText = ({
 
         <div
           ref={ref}
-          className="grid w-full max-w-full grid-cols-12 grid-rows-[4rem_4rem_4rem_3rem_0rem_auto] md:grid-rows-[8rem_8rem_8rem_6rem_4rem_auto] gap-x-6 relative"
+          className="grid w-full max-w-full grid-cols-12 grid-rows-[4rem_4rem_4rem_2rem_6rem_0rem_auto] md:grid-rows-[8rem_8rem_8rem_2rem_6rem_4rem_auto] gap-x-6 relative"
         >
           {imageTop && (
-            <div className="col-start-1 col-end-8 row-start-1 row-end-4 z-content rounded-3xl overflow-hidden shadow-lg">
+            <div className="col-start-1 max-xxs:col-end-12 max-xxs:row-end-5 col-end-8 row-start-1 row-end-4 z-content rounded-3xl overflow-hidden shadow-lg">
               <Image
                 src={imageTop}
                 alt="products"
@@ -50,7 +50,7 @@ const MediaGridWithText = ({
             </div>
           )}
           {imageBottom && (
-            <div className="col-start-6 col-end-13 row-start-3 row-end-7 z-base overflow-hidden">
+            <div className="max-xxs:hidden col-start-6 col-end-13 row-start-3 row-end-8 z-base overflow-hidden">
               <Image
                 src={imageBottom}
                 alt="products"
@@ -61,7 +61,7 @@ const MediaGridWithText = ({
             </div>
           )}
           {text && (
-            <div className="col-start-1 col-end-12 row-start-7 sm:col-end-6 sm:row-start-5 md:row-start-4 z-content flex items-end p-2 sm:p-4 sm:pt-8">
+            <div className="max-sm:hidden col-start-1 col-end-12 row-start-7 sm:col-end-6 sm:row-start-6 md:row-start-5 z-content flex items-end">
               <p className="md:text-xl mb-0">{text}</p>
             </div>
           )}
