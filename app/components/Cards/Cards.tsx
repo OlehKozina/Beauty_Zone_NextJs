@@ -54,7 +54,7 @@ export default function Cards({
           heading={heading}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 py-6 px-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 px-4 w-full">
           <AnimatePresence>
             {!!visibleCards?.length &&
               visibleCards.map((card, index) => (
@@ -81,7 +81,7 @@ export default function Cards({
                       alt={card.name || "card-logo"}
                       width={128}
                       height={128}
-                      className="w-32 h-32 flex-shrink-0 rounded-lg object-cover"
+                      className="w-32 h-32 flex-shrink-0 rounded-lg object-cover max-xxs:hidden"
                     />
                   )}
                   <div className="flex-1 text-left">

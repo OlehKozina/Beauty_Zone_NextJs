@@ -13,8 +13,8 @@ const Slide = ({
   name?: string;
 }) => {
   return (
-    <div className="max-md:max-w-[20rem] group font-medium mt-8 mb-4 hover:scale-105 transition-transform aspect-[336/170]">
-      <div className="mx-auto relative w-full h-full rounded-3xl overflow-hidden p-6 border border-secondary-dark">
+    <div className="max-md:max-w-[20rem] group font-medium mt-8 mb-4 hover:scale-105 transition-transform">
+      <div className="mx-auto relative w-full h-full rounded-3xl overflow-hidden p-6 border border-secondary-dark flex flex-col gap-2">
         {image && (
           <Image
             src={image}
@@ -26,10 +26,8 @@ const Slide = ({
           />
         )}
         {content && (
-          <div className="flex flex-col gap-6 rounded-2xl">
-            <div className="relative text-base font-thin">
-              <PortableText value={content} />
-            </div>
+          <div className="text-base flex items-center text-center p-2 font-thin">
+            <PortableText value={content} />
           </div>
         )}
       </div>

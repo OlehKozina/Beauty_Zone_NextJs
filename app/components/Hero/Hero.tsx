@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Form from "../Form/ModalForm";
+import { useFormStore } from "../Form/useFormStore";
 import { Raleway } from "next/font/google";
 import { PortableText } from "next-sanity";
 import { HeroType } from "@/types/Hero";
@@ -9,9 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "700"] });
 
 const Hero = ({ hero }: { hero: HeroType }) => {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const openForm = () => setIsFormVisible(true);
-  const closeForm = () => setIsFormVisible(false);
+  const { isFormVisible, openForm, closeForm } = useFormStore();
   if (!hero) return;
   const { heading, form, videoUrl, content, button } = hero;
   return (
@@ -53,9 +52,7 @@ const Hero = ({ hero }: { hero: HeroType }) => {
             </a>
           </div>
           <AnimatePresence>
-            {isFormVisible && form && (
-              <Form form={form} onClose={() => setIsFormVisible(false)} />
-            )}
+            {isFormVisible && form && <Form form={form} onClose={closeForm} />}
           </AnimatePresence>
         </div>
       </section>

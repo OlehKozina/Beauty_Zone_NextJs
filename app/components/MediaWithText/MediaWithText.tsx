@@ -19,7 +19,7 @@ function MediaWithText({ heading, content, image, id }: MediaWithTextProps) {
       id={id}
     >
       <div className="container relative">
-        <div className="flex flex-col md:flex-row items-start max-md:items-center justify-center gap-10 md:gap-0 md:space-x-10 text-base md:text-xl">
+        <div className="px-4 flex flex-col md:flex-row items-start max-md:items-center justify-center gap-10 md:gap-0 md:space-x-10 text-base md:text-xl">
           <div className="max-w-[35rem] lg:max-w-[43rem]">
             <Heading
               heading={heading}

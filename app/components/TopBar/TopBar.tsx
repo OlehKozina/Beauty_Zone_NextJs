@@ -36,7 +36,7 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
   return (
     <section
       className={clsx(
-        "fixed px-4  py-2 top-0 left-0 w-full bg-white shadow z-50 transition-all",
+        "fixed px-4 py-2 top-0 left-0 w-full bg-white shadow z-50 transition-all",
         hidden && "-translate-y-full"
       )}
     >

@@ -25,7 +25,7 @@ function MarqueeWithImage({ logos }: { logos?: { logo?: string }[] }) {
       <Marquee
         gradient={false}
         speed={50}
-        className="py-10 flex"
+        className="py-5 md:py-10 flex"
         pauseOnHover={true}
       >
         {!!logos?.length &&
@@ -34,7 +34,7 @@ function MarqueeWithImage({ logos }: { logos?: { logo?: string }[] }) {
               key={i}
               onClick={() => item.logo && handleImageClick(item.logo)}
               aria-label={`View logo ${i + 1} in full screen`}
-              className="flex items-center hover:scale-105 transition-transform border-button bg-button p-4 rounded-3xl overflow-hidden bg-opacity-80 h-[20rem]"
+              className="flex items-center hover:scale-105 transition-transform border-button bg-button p-2 md:p-4 rounded-3xl overflow-hidden bg-opacity-80 h-[20rem]"
             >
               <Image
                 className="h-full w-auto rounded-3xl object-contain"

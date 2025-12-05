@@ -19,19 +19,19 @@ function Footer({ footer }: { footer?: NavigationType }) {
   return (
     <footer className="relative">
       <div className="container p-4 bg-primary-light rounded-t-xl">
-        <div className="block gap-4 lg:flex lg:flex-col">
-          <nav className="block text-center lg:flex lg:items-start lg:flex-grow lg:gap-10">
+        <div className="block">
+          <nav className="max-sm:flex-col max-sm:items-center text-center flex md:items-start md:flex-grow gap-4 md:gap-10">
             <a className="link" href="BeautyZoneSite.html">
               <Image
-                className="relative top-3 ml-3 md:top-3 lg:top-0 invert"
+                className="relative ml-3 top-0 invert"
                 src="/logo.png"
                 alt="logo"
                 width={100}
                 height={50}
               />
             </a>
-            <div className="block gap-0 flex-grow justify-evenly lg:gap-[64px] lg:flex">
-              <ul className="pl-0 lg:pl-10 flex justify-center gap-20 grow">
+            <div className="block gap-0 flex-grow justify-evenly md:gap-2 md:flex">
+              <ul className="flex max-sm:gap-2 max-sm:flex-col justify-evenly grow">
                 {!!navigation?.length &&
                   navigation.map((link) => (
                     <li
@@ -42,31 +42,7 @@ function Footer({ footer }: { footer?: NavigationType }) {
                     </li>
                   ))}
               </ul>
-              {/* <address>
-                <ul className="hidden lg:block">
-                  {contactLinks.map(
-                    (link) =>
-                      link?.label && (
-                        <li
-                          key={link.href}
-                          className="no-underline text-primary-light hover:text-secondary-light transition-all"
-                        >
-                          <a
-                            href={link.href}
-                            target={link.external ? "_blank" : undefined}
-                            rel={
-                              link.external ? "noopener noreferrer" : undefined
-                            }
-                            className="font-thin hover:text-brand-default transition-all flex flex-col md:flex-row"
-                          >
-                            {link.label}
-                          </a>
-                        </li>
-                      )
-                  )}
-                </ul>
-              </address> */}
-              <ul className="flex gap-6 pl-0 justify-center pl-18">
+              <ul className="flex gap-6 pl-0 justify-center pl-18 max-md:hidden">
                 {socialLinks.map((link) => (
                   <a
                     key={link.label}
@@ -84,13 +60,16 @@ function Footer({ footer }: { footer?: NavigationType }) {
           </nav>
         </div>
       </div>
-      <div className="bg-white py-4 shadow-[0_-4px_10px_rgba(0,0,0,0.10)] z-50 w-full">
-        <div className="max-w-[80rem] mx-auto flex justify-between">
-          <a href={address?.link} className="flex gap-2 items-center">
+      <div className="bg-white py-4 shadow-[0_-4px_10px_rgba(0,0,0,0.10)] z-50 w-full px-4">
+        <div className="max-w-[80rem] mx-auto flex justify-between max-xxs:flex-col gap-2 max-xxs:items-center">
+          <a
+            href={address?.link}
+            className="flex gap-2 items-center max-sm:text-sm"
+          >
             <FontAwesomeIcon icon={faLocationDot} className="text-green" />
             {address?.name}
           </a>
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center max-sm:hidden">
             <FontAwesomeIcon icon={faPhone} className="text-green" />
             {phone}
           </div>
