@@ -22,11 +22,10 @@ export default function Cards({
   const ITEMS_PER_LOAD = 4;
   const INITIAL_COUNT = 4;
 
-  if (!cards) return null;
-
-  const visibleCards = cards.slice(0, visibleCount);
+  const visibleCards = cards?.slice(0, visibleCount);
 
   useEffect(() => {
+    if (!cards) return;
     if (cards.length <= visibleCount) {
       setHasMore(false);
       setShowAll(true);
@@ -34,7 +33,9 @@ export default function Cards({
       setHasMore(true);
       setShowAll(false);
     }
-  }, [visibleCount, cards.length]);
+  }, [visibleCount, cards?.length]);
+
+  if (!cards) return null;
 
   const handleLoadMore = () => {
     const newCount = visibleCount + ITEMS_PER_LOAD;
@@ -55,44 +56,47 @@ export default function Cards({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 py-6 px-4 w-full">
           <AnimatePresence>
-            {visibleCards.map((card, index) => (
-              <motion.a
-                key={`${card.name}-${index}`}
-                href="#"
-                initial={
-                  index >= visibleCount - ITEMS_PER_LOAD &&
-                  index >= INITIAL_COUNT
-                    ? { opacity: 0, y: 20 }
-                    : false
-                }
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{
-                  duration: 0.3,
-                  delay: (index % ITEMS_PER_LOAD) * 0.1,
-                }}
-                className="flex group items-center gap-6 p-6 border border-primary-dark rounded-2xl bg-primary-light text-white hover:shadow-2xl transition-shadow"
-              >
-                {card.image && (
-                  <Image
-                    src={card.image}
-                    alt={card.name || "card-logo"}
-                    width={128}
-                    height={128}
-                    className="w-32 h-32 flex-shrink-0 rounded-lg object-cover"
-                  />
-                )}
-                <div className="flex-1 text-left">
-                  {card.name && (
-                    <h3 className="text-2xl font-semibold mb-2">{card.name}</h3>
+            {!!visibleCards?.length &&
+              visibleCards.map((card, index) => (
+                <motion.a
+                  key={`${card.name}-${index}`}
+                  href="#"
+                  initial={
+                    index >= visibleCount - ITEMS_PER_LOAD &&
+                    index >= INITIAL_COUNT
+                      ? { opacity: 0, y: 20 }
+                      : false
+                  }
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: (index % ITEMS_PER_LOAD) * 0.1,
+                  }}
+                  className="flex group items-center gap-6 p-6 border border-primary-dark rounded-2xl bg-primary-light text-white hover:shadow-2xl transition-shadow"
+                >
+                  {card.image && (
+                    <Image
+                      src={card.image}
+                      alt={card.name || "card-logo"}
+                      width={128}
+                      height={128}
+                      className="w-32 h-32 flex-shrink-0 rounded-lg object-cover"
+                    />
                   )}
-                  {card.content && <PortableText value={card.content} />}
-                  <p className="mt-4 group-hover:underline transition-all">
-                    Learn More
-                  </p>
-                </div>
-              </motion.a>
-            ))}
+                  <div className="flex-1 text-left">
+                    {card.name && (
+                      <h3 className="text-2xl font-semibold mb-2">
+                        {card.name}
+                      </h3>
+                    )}
+                    {card.content && <PortableText value={card.content} />}
+                    <p className="mt-4 group-hover:underline transition-all">
+                      Learn More
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
           </AnimatePresence>
         </div>
         <div className="mt-8 flex gap-4">
