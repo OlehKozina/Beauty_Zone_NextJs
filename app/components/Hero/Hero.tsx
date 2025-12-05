@@ -4,7 +4,7 @@ import Form from "../Form/ModalForm";
 import { Raleway } from "next/font/google";
 import { PortableText } from "next-sanity";
 import { HeroType } from "@/types/Hero";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -13,8 +13,7 @@ const Hero = ({ hero }: { hero: HeroType }) => {
   const openForm = () => setIsFormVisible(true);
   const closeForm = () => setIsFormVisible(false);
   if (!hero) return;
-  const { label, heading, form, privacyPolicy, videoUrl, content, button } =
-    hero;
+  const { heading, form, videoUrl, content, button } = hero;
   return (
     <>
       <section className="px-0 py-[100px] flex flex-col items-end justify-center h-[424px] bg-no-repeat bg-center bg-cover relative md:h-[824px] lg:h-[1024px]">
@@ -53,13 +52,11 @@ const Hero = ({ hero }: { hero: HeroType }) => {
               {button?.name}
             </a>
           </div>
-          {isFormVisible && (
-            <Form
-              onClose={closeForm}
-              form={form}
-              privacyPolicy={privacyPolicy}
-            />
-          )}
+          <AnimatePresence>
+            {isFormVisible && form && (
+              <Form form={form} onClose={() => setIsFormVisible(false)} />
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </>

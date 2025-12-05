@@ -1,22 +1,16 @@
 "use client";
 import { FormFieldType } from "@/types/ContactType";
-import React, { useState } from "react";
-import { useLockScroll } from "@/app/hooks/useLockScroll";
-import PrivacyPolicy from "./PrivacyPolicy";
+import React from "react";
 import { PortableTextBlock } from "next-sanity";
 
 const Form = ({
   buttonLabel,
   fields,
-  privacyPolicy,
 }: {
   buttonLabel?: string;
   fields?: FormFieldType[];
   privacyPolicy?: PortableTextBlock;
 }) => {
-  const [isPolicyVisible, setIsPolicyVisible] = useState(false);
-  const togglePolicy = () => setIsPolicyVisible((prev) => !prev);
-  useLockScroll(!!isPolicyVisible);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -28,7 +22,7 @@ const Form = ({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: formData.get("name"),
-        email: formData.get("email"),
+        email: formData.get("time"),
         phone: formData.get("phone"),
       }),
     });
