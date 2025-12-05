@@ -36,13 +36,13 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
   return (
     <section
       className={clsx(
-        "fixed py-2 top-0 left-0 w-full bg-white shadow z-50 transition-all",
+        "fixed px-4  py-2 top-0 left-0 w-full bg-white shadow z-50 transition-all",
         hidden && "-translate-y-full"
       )}
     >
-      <div className="max-w-[80rem] mx-auto flex justify-between text-base">
+      <div className="max-w-[80rem] mx-auto flex justify-between text-sm">
         {address && (
-          <div className="flex gap-4 py-2">
+          <div className="flex gap-1 md:gap-4 py-2 max-md:flex-col max-sm:hidden">
             <a
               href={address.link}
               target="_blank"
@@ -71,7 +71,7 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
           </div>
         )}
         {phone && (
-          <div className="py-2 flex gap-2 items-center">
+          <div className="py-2 flex gap-2 items-center text-base">
             <FontAwesomeIcon
               icon={faPhone}
               className="text-green fa-fw"
@@ -82,7 +82,7 @@ const TopBar = ({ topBar }: { topBar: TopBarType }) => {
             {phone}
           </div>
         )}
-        <div className="flex lg:gap-10 lg:mr-5 items-center">
+        <div className="flex gap-2 md:gap-5 items-center">
           {!!socialLinks?.length &&
             socialLinks.map((link) => (
               <a

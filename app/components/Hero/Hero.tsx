@@ -16,7 +16,7 @@ const Hero = ({ hero }: { hero: HeroType }) => {
   const { heading, form, videoUrl, content, button } = hero;
   return (
     <>
-      <section className="px-0 py-[100px] flex flex-col items-end justify-center h-[424px] bg-no-repeat bg-center bg-cover relative md:h-[824px] lg:h-[1024px]">
+      <section className="px-0 py-24 flex flex-col items-end justify-center min-h-screen bg-no-repeat bg-center bg-cover relative">
         <motion.div className="absolute inset-0 bg-cover bg-top -z-[1]">
           <video
             src={videoUrl}
