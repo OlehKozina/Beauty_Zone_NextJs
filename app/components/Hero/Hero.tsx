@@ -16,7 +16,7 @@ const Hero = ({ hero }: { hero: HeroType }) => {
   const { heading, form, videoUrl, content, button } = hero;
   return (
     <>
-      <section className="px-0 py-24 flex flex-col items-end justify-center min-h-screen bg-no-repeat bg-center bg-cover relative">
+      <section className="px-0 py-24 flex flex-col items-end justify-center min-h-screen bg-no-repeat bg-center bg-cover relative mt-10">
         <motion.div className="absolute inset-0 bg-cover bg-top -z-[1]">
           <video
             src={videoUrl}
@@ -27,26 +27,26 @@ const Hero = ({ hero }: { hero: HeroType }) => {
             className="w-full h-full object-cover"
           />
         </motion.div>
-        <div className="container flex flex-col items-end">
+        <div className="container flex flex-col items-center xxs:items-end pr-4">
           <h1
             className={`text-secondary-light text-end text-6xl font-thin mb-0 whitespace-pre-line leading-none mt-0 md:text-8xl lg:text-[120px] ${raleway.className}`}
             lang="en"
           >
             {heading}
           </h1>
-          <div className="font-normal text-base mt-5 text-center lg:text-end max-w-[25rem] font-light">
+          <div className="font-normal text-base mt-5 text-center xxs:text-end max-w-[25rem] font-light">
             {content && <PortableText value={content} />}
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-2 xxs:gap-4 max-xxs:flex-col">
             <button
-              className="button hover:bg-opacity-60 transition-all bg-secondary-light text-white hover:scale-105"
+              className="button !m-0 hover:bg-opacity-60 transition-all bg-secondary-light text-white hover:scale-105"
               type="button"
               onClick={openForm}
             >
               Request a call
             </button>
             <a
-              className="button transition-all hover:scale-105"
+              className="button transition-all hover:scale-105 !m-0"
               href={`#${button?.link}`}
             >
               {button?.name}
