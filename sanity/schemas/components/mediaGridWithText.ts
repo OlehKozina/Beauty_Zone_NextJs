@@ -10,6 +10,9 @@ export const mediaGridWithText = defineType(
       F.text({
         name: "heading",
       }),
+      F.string({
+        name: "id",
+      }),
       F.text({
         name: "text",
         title: "Description",

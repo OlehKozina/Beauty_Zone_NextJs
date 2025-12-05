@@ -43,7 +43,11 @@ const Form = ({
     form.reset();
   };
   return (
-    <form className="flex flex-col" name="contact-form" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col items-center"
+      name="contact-form"
+      onSubmit={handleSubmit}
+    >
       {!!fields?.length &&
         fields.map((field) => (
           <div key={field.label} className="mb-8">
@@ -51,7 +55,7 @@ const Form = ({
               {field.label}
             </label>
             <input
-              className="py-4 px-10 w-[310px] rounded-[32px] border border-solid border-white text-base leading-[1.17] focus:border-gray-500 focus:outline-none focus:bg-white text-black"
+              className="py-4 px-10 rounded-xl border border-solid border-white text-base leading-tight focus:border-gray-500 focus:outline-none focus:bg-white text-black"
               type={field.type}
               id="user-name"
               name={field.name}
@@ -60,24 +64,12 @@ const Form = ({
             />
           </div>
         ))}
-      <button className="mt-0 mx-auto mb-6 button transition-all" type="submit">
+      <button
+        className="!mt-0 mx-auto mb-6 button transition-all !px-8"
+        type="submit"
+      >
         {buttonLabel}
       </button>
-      <div className="my-0 mx-auto max-w-[220px] text-sm text-center text-[#747272]">
-        By clicking the button, I agree to the
-        <button
-          type="button"
-          className="text-white ml-2"
-          onClick={togglePolicy}
-        >
-          privacy policy
-        </button>
-        <PrivacyPolicy
-          onClose={togglePolicy}
-          privacyPolicy={privacyPolicy}
-          isVisible={isPolicyVisible}
-        />
-      </div>
     </form>
   );
 };

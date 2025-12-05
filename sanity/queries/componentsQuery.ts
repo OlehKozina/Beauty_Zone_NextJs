@@ -56,7 +56,7 @@ const marqueeQuery = `
 
 const mediaGridWithTextQuery = `
     _type == "mediaGridWithText" =>{
-      "_id": navLink->_id,
+      id,
       heading,
       "imageTop": imageTop.asset->url,
       "imageBottom": imageBottom.asset->url,

@@ -5,7 +5,7 @@ import Heading from "../Heading";
 import { useInView } from "react-intersection-observer";
 
 export interface MediaGridWithTextProps {
-  _id: string;
+  id: string;
   heading?: string;
   imageTop?: string;
   imageBottom?: string;
@@ -17,11 +17,15 @@ const MediaGridWithText = ({
   imageTop,
   imageBottom,
   text,
+  id,
 }: MediaGridWithTextProps) => {
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
 
   return (
-    <section className="relative pt-8 text-white max-md:scroll-mt-16 scroll-mt-24 bg-secondary-light/40">
+    <section
+      className="relative pt-8 text-white max-md:scroll-mt-16 scroll-mt-24 bg-secondary-light/40"
+      id={id}
+    >
       <div className="container p-7 sm:p-14 relative">
         {heading && (
           <Heading
