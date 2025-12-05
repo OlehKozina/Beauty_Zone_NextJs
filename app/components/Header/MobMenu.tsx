@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
@@ -21,15 +21,21 @@ const MobMenu: React.FC<MobMenuProps> = ({
   socialLinks,
   navigation,
 }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-full bg-white z-40">
+      <div className="fixed top-14 left-0 w-full h-full bg-white z-40">
         <FontAwesomeIcon
           icon={faXmark}
-          className="bg-transparent cursor-pointer absolute top-9 right-20 w-6"
+          className="bg-transparent cursor-pointer absolute top-9 right-10 w-6"
           onClick={onClose}
         />
-        <ul className="flex flex-col gap-5 m-5">
+        <ul className="flex flex-col items-center gap-5 mx-5 my-10">
           <li>
             <a className="no-underline text-primary-dark" href="#">
               <Image
@@ -45,27 +51,12 @@ const MobMenu: React.FC<MobMenuProps> = ({
             navigation.map((link) => (
               <li
                 key={link.title}
+                onClick={onClose}
                 className="menu-btn-close hover:text-secondary-light"
               >
                 <a href={`#${link.slug}`}>{link.title}</a>
               </li>
             ))}
-          <div className="flex gap-4">
-            {" "}
-            {!!socialLinks?.length &&
-              socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  aria-label={link.label}
-                  className="hover:text-secondary-light w-6 h-6"
-                >
-                  {link.icon && (
-                    <FontAwesomeIcon icon={link.icon} className="text-2xl" />
-                  )}
-                </a>
-              ))}
-          </div>
         </ul>
       </div>
     </>
